@@ -1,4 +1,4 @@
-# To use this file, insall the REST Client extension
+# To use this file, install the REST Client extension
 # vscode:extension/humao.rest-client
 
 # To switch environments:
@@ -8,5 +8,8 @@
 # You'll need to switch to either `local` or `vercel` to get started.
 
 @baseUrl = {{host}}/api/
+###
 
 GET {{baseUrl}}
+###
+
