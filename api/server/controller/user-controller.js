@@ -18,7 +18,6 @@ export const getAllUser = async (req, res) => {
     .json({ users })
 }
 export const signup = async (req, res) => {
-  // @ts-ignore
   const { name, email, password } = req.body
 
   let existingUser

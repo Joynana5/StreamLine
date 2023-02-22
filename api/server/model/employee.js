@@ -4,7 +4,11 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const employeeSchema = new Schema({
-  full_name: {
+  first_name: {
+    type: String,
+    required: true
+  },
+  last_name: {
     type: String,
     required: true
   },
