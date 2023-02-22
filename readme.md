@@ -45,8 +45,7 @@ API Reference
 Clone the project
 
 ```bash
-  git clone [StreamLine!](https://github.com/Joynana5/StreamLine.git)
-
+  git clone https://www.google.com](https://github.com/Joynana5/StreamLine.git
 ```
 
 Go to the project directory
