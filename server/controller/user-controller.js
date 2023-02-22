@@ -1,7 +1,9 @@
 import User from '../model/user.js'
 import bcrypt from 'bcrypt'
+
 const saltRounds = 10
 const myPlaintextPassword = 's0/P4$$w0rD'
+
 
 export const getAllUser = async (req, res) => {
   let users
@@ -18,7 +20,8 @@ export const getAllUser = async (req, res) => {
     .json({ users })
 }
 export const signup = async (req, res) => {
-  const { name, email, password } = req.body
+  // password needed in the function below
+  const { name, email } = req.body
 
   let existingUser
   try {
@@ -29,7 +32,7 @@ export const signup = async (req, res) => {
   if (existingUser) {
     return res
       .status(400)
-      .json({ message: 'User already Exists! Login Instead'})
+      .json({ message: 'User already Exists! Login Instead' })
   }
 
   const hashedPassword = bcrypt.hashSync(myPlaintextPassword, saltRounds)
@@ -59,11 +62,12 @@ export const login = async (req, res) => {
   if (!existingUser) {
     return res
       .status(404)
-      .json({ message: 'Couldnt Find User By This Email'})
+      .json({ message: 'Couldnt Find User By This Email' })
   }
   const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password)
   if (!isPasswordCorrect) {
-    return res.status(400).json({ message: 'Incorrect Password'})
+    return res.status(400).json({ message: 'Incorrect Password' })
   }
-  return res.status(200).json({ message: 'Login Successful'})
+  return res.status(200).json({ message: 'Login Successful' })
 }
+

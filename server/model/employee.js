@@ -18,9 +18,9 @@ const employeeSchema = new Schema({
     unique: true
   },
   birthday: {
-    type: Number,
+    type: String,
     required: true,
-    maxlength: 6
+    maxlength: 10
   },
   gender: {
     type: String,
