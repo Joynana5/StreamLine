@@ -2,13 +2,13 @@ import express from 'express'
 import mongoose from 'mongoose'
 import lifecycle from './middleware/lifecycle.js'
 import router from '../router/user-routes.js'
-
 mongoose.set('strictQuery', false)
 
 const app = express()
 
 app.use(express.json())
 app.use('/api/user', router)
+
 
 
 const todoSchema = new mongoose.Schema({

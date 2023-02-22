@@ -1,11 +1,13 @@
-import express from 'express'
-import { getAllUser, login, signup } from '../server/controller/user-controller.js'
+import { Router } from 'express'
+
+import * as controller from '../server/controller/user-controller.js'
 
 
-const router = express.Router()
+const router = Router()
 
-router.get('/', getAllUser)
-router.post('/signup', signup)
-router.post('/login', login)
+router.get('/api', controller.getAllUser)
+router.post('/api/signup', controller.signup)
+router.post('/api/login', controller.login)
+
 
 export default router
