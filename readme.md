@@ -1,13 +1,11 @@
 # StreamLine
 
-A simple, yet effective, hospital management system. 
-
-League Stitch keeps things simple! 
+Developed to provide healthcare administrators with a user-friendly application that assists with tracking employee demographics, such as full-name, date of birth and employment status. The user will be able to search, update, edit and delete employee records.
 
 
 ## Authors
 
-- [@Joynana5](https://www.github.com/Joynana5)
+[@Joynana5](https://www.github.com/Joynana5)
 
 
 ## Tech Stack
@@ -18,31 +16,28 @@ League Stitch keeps things simple!
 
 
 ## API Reference
+API Reference
+ 
+![image](https://user-images.githubusercontent.com/114016876/220657244-ff8c035a-a05d-41bd-9abc-6946e0eaee4a.png)
 
 
-#### Get all items
-
-```http
-  GET /api/items
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
-#### Get item
+#### Get all employees
 
 ```http
-  GET /api/items/${id}
+  GET /api/employees
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
+#### Get employee
 
-#### add(num1, num2)
+```http
+  GET /api/items/${email}
+```
 
-Takes two numbers and returns the sum.
+| Parameter | Type     | Description                             |
+| :-------- | :------- | :--------------------------------       |
+| `email`   | `string` | **Required**. Email of emloyee to fetch |
+
+
 
 
 ## Run Locally
@@ -50,7 +45,8 @@ Takes two numbers and returns the sum.
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone [StreamLine!](https://github.com/Joynana5/StreamLine.git)
+
 ```
 
 Go to the project directory
@@ -74,15 +70,16 @@ Start the server
 
 ## Features
 
-- Local User Authentification
-- Champion ....
-- 
-- 
+- Employee Database
+- User Login
+- Search Filter
+
+## Post MVP
+
+- User authentication
+- Leave tracker
 
 
-## Feedback
-
-If you have any feedback, please reach out to us at **Create Brand...
 
 
 ## 
