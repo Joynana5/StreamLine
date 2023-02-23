@@ -1,6 +1,10 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import lifecycle from './middleware/lifecycle.js'
+import * as controller from '../server/controller/employee-controller.js'
+import { Router } from 'express'
+const router = Router()
+
 mongoose.set('strictQuery', false)
 
 const app = express()
@@ -38,5 +42,7 @@ app.get('/api', async (req, res) => {
   res.json({ message: 'Hello World', todos })
 })
 
+router.get('/api', controller.getAllEmployees)
+router.put('/api/newEmployee', controller.newEmployee)
 // Don't use app.listen. Instead export app.
 export default app

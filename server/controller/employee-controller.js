@@ -2,24 +2,26 @@ import employee from '../model/employee.js'
 
 
 export const getAllEmployees = async (req, res) => {
-  let employees
+  let employeesJSON
   try {
-    employees = await employee.find()
+    employeesJSON = await employee.find()
+    res.json(employeesJSON)
   } catch (err) {
     console.log(err)
   }
-  if (!employees) {
+  if (!employeesJSON) {
     return res.status(404).json({ message: 'Employee Not Found' })
   }
   return res
     .status(200)
-    .json({ employees })
+    .json({ employeesJSON })
 }
 
 export const getEmployee = async (req, res) => {
   let Employee
   try {
     Employee = await employee.findById({ first_name: String, last_name: String })
+    res.json(Employee)
   } catch (err) {
     console.log(err)
   }
@@ -52,12 +54,13 @@ export const newEmployee = async (req, res) => {
     gender,
   })
   try {
-    await employee.Save()
+    await Employee.save()
   } catch (err) {
     console.log(err)
   } return res
     .status(201)
     .json({ Employee })
+ 
 }
 
 

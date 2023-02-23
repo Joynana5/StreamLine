@@ -9,6 +9,7 @@ await seed()
 await mongoose.disconnect()
 
 async function seed() {
+  await employee.deleteMany()
   await employee.create(employeeData)
   let test = await employee.find({})
   console.log(test)
