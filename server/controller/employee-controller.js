@@ -1,6 +1,7 @@
 import employee from '../model/employee.js'
 
 
+
 export const getAllEmployees = async (req, res) => {
   let employeesJSON
   try {
@@ -63,7 +64,32 @@ export const newEmployee = async (req, res) => {
     .json({ Employee })
 }
 
-
-
-
-
+export const updateEmployee = async (req, res) => {
+  try {
+    const { id } = req.params
+    let Employee = await employee.findByIdAndUpdate(id, req.body)
+    if (!Employee) {
+      return res.status(404)
+        .json({ message: 'unable to find employee with ID ${id} ' })
+    }
+    await Employee.save()
+    res.status(200).json(Employee)
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ message: 'Please Try Again' })
+  }
+}
+export const deleteEmployee = async (req, res) => {
+  try {
+    const { id } = req.params
+    let Employee = await employee.findByIdAndDelete(id)
+    if (!Employee) {
+      return res.status(404)
+        .json({ message: 'Employee Not Found' })
+    }
+  } catch (err) {
+    return res.status(500)
+      .json({ message: 'Please Try Again' })
+  }
+}

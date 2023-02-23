@@ -28,6 +28,7 @@ app.use(lifecycle({
 // Feel free to use a router and move this elsewhere.
 
 app.use('/api', employeerouter)
+// app.use(express.urlencoded({ extended: false }))
 
 
 
