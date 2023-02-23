@@ -5,7 +5,7 @@ export const getAllEmployees = async (req, res) => {
   let employeesJSON
   try {
     employeesJSON = await employee.find()
-    res.json(employeesJSON)
+    return res.json(employeesJSON)
   } catch (err) {
     console.log(err)
   }
@@ -60,7 +60,7 @@ export const newEmployee = async (req, res) => {
   } return res
     .status(201)
     .json({ Employee })
- 
+
 }
 
 

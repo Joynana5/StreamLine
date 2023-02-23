@@ -6,7 +6,6 @@ import employeeData from './employee-data.json' assert {type: 'json'}
 
 mongoose.connect(process.env.DATABASE_URL)
 await seed()
-await mongoose.disconnect()
 
 async function seed() {
   await employee.deleteMany()
@@ -15,6 +14,7 @@ async function seed() {
   console.log(test)
 }
 
+await mongoose.disconnect()
 
 
 

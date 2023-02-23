@@ -3,11 +3,11 @@ import { Router } from 'express'
 import * as controller from '../server/controller/user-controller.js'
 
 
-const router = Router()
+const userrouter = Router()
 
-router.get('/api', controller.getAllUser)
-router.post('/api/signup', controller.signup)
-router.post('/api/login', controller.login)
+userrouter.get('/api', controller.getAllUser)
+userrouter.post('/api/signup', controller.signup)
+userrouter.post('/api/login', controller.login)
 
 
-export default router
+export default userrouter

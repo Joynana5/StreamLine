@@ -1,9 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import lifecycle from './middleware/lifecycle.js'
-import * as controller from '../server/controller/employee-controller.js'
-import { Router } from 'express'
-const router = Router()
+import employeerouter from '../router/employee-router.js'
 
 mongoose.set('strictQuery', false)
 
@@ -11,13 +9,6 @@ const app = express()
 app.use(express.json())
 
 
-
-
-const todoSchema = new mongoose.Schema({
-  text: String
-})
-
-const Todo = mongoose.model('Todo', todoSchema)
 
 app.use(lifecycle({
   async setup() {
@@ -34,15 +25,9 @@ app.use(lifecycle({
 }))
 
 // Feel free to use a router and move this elsewhere.
-app.get('/api', async (req, res) => {
-  await Todo.insertMany([{ text: (new Date()).toISOString() }])
-  const todos = await Todo.find()
 
-  console.log(process.env.DATABASE_URL)
-  res.json({ message: 'Hello World', todos })
-})
+app.use('/api', employeerouter)
 
-router.get('/api', controller.getAllEmployees)
-router.put('/api/newEmployee', controller.newEmployee)
+
 // Don't use app.listen. Instead export app.
 export default app
