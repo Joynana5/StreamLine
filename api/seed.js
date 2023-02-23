@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { newEmployee } from '../server/controller/employee-controller.js'
 import employee from '../server/model/employee.js'
 import employeeData from './employee-data.json' assert {type: 'json'}
 // Leave these 4 lines
@@ -14,7 +15,8 @@ async function seed() {
   console.log(test)
 }
 
-await mongoose.disconnect()
+await employee.create(newEmployee)
 
+await mongoose.disconnect()
 
 

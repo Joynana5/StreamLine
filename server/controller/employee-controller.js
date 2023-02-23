@@ -21,7 +21,7 @@ export const getEmployee = async (req, res) => {
   let Employee
   try {
     Employee = await employee.findById({ first_name: String, last_name: String })
-    res.json(Employee)
+    return res.json(Employee)
   } catch (err) {
     console.log(err)
   }
@@ -41,7 +41,7 @@ export const newEmployee = async (req, res) => {
   } catch (err) {
     return console.log(err)
   }
-  if (!existingEmployee) {
+  if (existingEmployee) {
     return res
       .status(400)
       .json({ message: 'Employee already Exists!' })
@@ -55,12 +55,12 @@ export const newEmployee = async (req, res) => {
   })
   try {
     await Employee.save()
+    return res.json(Employee)
   } catch (err) {
     console.log(err)
   } return res
     .status(201)
     .json({ Employee })
-
 }
 
 

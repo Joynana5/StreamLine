@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import lifecycle from './middleware/lifecycle.js'
 import employeerouter from '../router/employee-router.js'
+// import employee from '../server/model/employee.js'
 
 mongoose.set('strictQuery', false)
 
@@ -27,6 +28,7 @@ app.use(lifecycle({
 // Feel free to use a router and move this elsewhere.
 
 app.use('/api', employeerouter)
+
 
 
 // Don't use app.listen. Instead export app.
