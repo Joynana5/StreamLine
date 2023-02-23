@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 import { newEmployee } from '../server/controller/employee-controller.js'
 import employee from '../server/model/employee.js'
 import employeeData from './employee-data.json' assert {type: 'json'}
+import user from '../server/model/user.js'
 // Leave these 4 lines
 //@ts-ignore
 
@@ -15,7 +16,18 @@ async function seed() {
   console.log(test)
 }
 
+
+await userseed()
+async function userseed() {
+  await user.deleteMany()
+  await user.create(user)
+  let test2 = await user.find({})
+  console.log(test2)
+}
+
+await user.create(user)
 await employee.create(newEmployee)
+
 
 await mongoose.disconnect()
 

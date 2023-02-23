@@ -2,7 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import lifecycle from './middleware/lifecycle.js'
 import employeerouter from '../router/employee-router.js'
-// import employee from '../server/model/employee.js'
+import userrouter from '../router/user-routes.js'
 
 mongoose.set('strictQuery', false)
 
@@ -30,7 +30,7 @@ app.use(lifecycle({
 app.use('/api', employeerouter)
 // app.use(express.urlencoded({ extended: false }))
 
-
+app.use('/api/user', userrouter)
 
 // Don't use app.listen. Instead export app.
 export default app
