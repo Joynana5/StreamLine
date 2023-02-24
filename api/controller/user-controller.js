@@ -1,7 +1,7 @@
 import User from '../model/user.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-const jwt_SECRET_KEY = "MyKey"
+const jwt_SECRET_KEY = " "
 const saltRounds = 10
 const myPlaintextPassword = 's0/P4$$w0rD'
 
@@ -77,7 +77,7 @@ export const login = async (req, res) => {
     return res.status(400).json({ message: 'Incorrect Email / Password' })
   }
 
-  
+
   const token = jwt.sign({ id: existingUser._id }, jwt_SECRET_KEY, { expiresIn: '3hr' })
   return res.status(200).json({ message: 'Login Successful', id: existingUser, token })
 }
