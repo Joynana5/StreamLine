@@ -1,25 +1,11 @@
 import User from '../model/user.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-const jwt_SECRET_KEY = " "
 const saltRounds = 10
 const myPlaintextPassword = 's0/P4$$w0rD'
+const JWT_SECRET_KEY = process.env.secret_key
 
 
-export const getAllUser = async (req, res) => {
-  let users
-  try {
-    users = await User.find()
-  } catch (err) {
-    console.log(err)
-  }
-  if (!users) {
-    return res.status(404).json({ message: 'User not Found' })
-  }
-  return res
-    .status(200)
-    .json({ users })
-}
 export const signup = async (req, res) => {
 
   const { name, email, password } = req.body
@@ -78,6 +64,37 @@ export const login = async (req, res) => {
   }
 
 
-  const token = jwt.sign({ id: existingUser._id }, jwt_SECRET_KEY, { expiresIn: '3hr' })
+  // @ts-ignore
+  const token = jwt.sign({ id: existingUser._id }, JWT_SECRET_KEY, { expiresIn: '3hr' })
   return res.status(200).json({ message: 'Login Successful', id: existingUser, token })
+}
+const verifyToken = (req, res, next) => {
+  const { id } = req.body
+  const headers = req.headers[`Authorization`]
+  const token = headers.split('')[1]
+  if (!token) {
+    res.status(404).json({ message: ' No token found' })
+  }
+  jwt.verify(String(token), (err, user) => {
+    if (err) {
+      res.status(400).json({ message: 'Invalid Token' })
+    }
+    console.log({ id })
+    next()
+  })
+}
+export const getUser = async (req, res, next) => {
+  const userId = req.id
+  let user
+  try {
+    user = await User.findById(userId, '-password')
+  } catch (err) {
+    return new err(err)
+  }
+  if (!user) {
+    return res.status(404).json({ message: 'User not Found' })
+  }
+  return res
+    .status(200)
+    .json({ user })
 }
