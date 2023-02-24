@@ -1,7 +1,4 @@
 import employee from '../model/employee.js'
-
-
-
 export const getAllEmployees = async (req, res) => {
   let employeesJSON
   try {
@@ -17,7 +14,6 @@ export const getAllEmployees = async (req, res) => {
     .status(200)
     .json({ employeesJSON })
 }
-
 export const getEmployee = async (req, res) => {
   let Employee
   try {
@@ -33,7 +29,6 @@ export const getEmployee = async (req, res) => {
     .status(200)
     .json({ Employee })
 }
-
 export const newEmployee = async (req, res) => {
   const { first_name, last_name, email, birthday, gender } = req.body
   let existingEmployee
@@ -63,7 +58,6 @@ export const newEmployee = async (req, res) => {
     .status(201)
     .json({ Employee })
 }
-
 export const updateEmployee = async (req, res) => {
   try {
     const { id } = req.params

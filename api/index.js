@@ -1,8 +1,8 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import lifecycle from './middleware/lifecycle.js'
-import employeerouter from '../router/employee-router.js'
-import userrouter from '../router/user-routes.js'
+import employeerouter from './router/employee-router.js'
+import userrouter from './router/user-routes.js'
 
 mongoose.set('strictQuery', false)
 

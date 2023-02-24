@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
-import employee from '../server/model/employee.js'
+import employee from './model/employee.js'
 import employeeData from './employee-data.json' assert {type: 'json'}
-import user from '../server/model/user.js'
+import user from './model/user.js'
 import userData from './user-data.json' assert {type: 'json'}
 
 // Leave these 4 lines
@@ -22,7 +22,6 @@ await userseed()
 async function userseed() {
   await user.deleteMany()
   await user.create(userData)
-
   let test2 = await user.find({})
   console.log(test2)
 }
