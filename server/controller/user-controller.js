@@ -4,64 +4,24 @@ import bcrypt from 'bcrypt'
 const saltRounds = 10
 const myPlaintextPassword = 's0/P4$$w0rD'
 
+
 export const getAllUser = async (req, res) => {
-  let usersJSON
+  let users
   try {
-    usersJSON = await User.find()
-    return res.json(usersJSON)
+    users = await User.find()
   } catch (err) {
     console.log(err)
   }
-  if (!usersJSON) {
+  if (!users) {
     return res.status(404).json({ message: 'User not Found' })
   }
-  return res.status(200).json({ usersJSON })
+  return res
+    .status(200)
+    .json({ users })
 }
-
-export const signUp = async () => {
-  const nameInput = document.getElementById('name')
-  const emailInput = document.getElementById('email')
-  const passwordInput = document.getElementById('password')
- 
-  const name = nameInput.value
-  const email = emailInput.value
-  const password = passwordInput.value
-
-  if (!name || !email || !password) {
-    return alert('Invalid Request Body. Name, email and password are required.')
-  }
-
-  let existingUser
-  try {
-    existingUser = await User.findOne({ email })
-  } catch (err) {
-    return console.log(err)
-  }
-  if (existingUser) {
-    return alert('User already exists! Login instead.')
-  }
-
-  let hashedPassword = bcrypt.hashSync(myPlaintextPassword, saltRounds)
-
-  const user = new User({
-    name,
-    email,
-    password: hashedPassword,
-  })
-  try {
-    await user.save()
-    return alert('Sign up successful.')
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-export const login = async () => {
-  const emailInput = document.getElementById('email')
-  const passwordInput = document.getElementById('password')
-
-  const email = emailInput.value
-  const password = passwordInput.value
+export const signup = async (req, res) => {
+  // password needed in the function below
+  const { name, email } = req.body
 
   let existingUser
   try {
@@ -70,17 +30,28 @@ export const login = async () => {
     return console.log(err)
   }
   if (!existingUser) {
-    return alert('Couldn't find user by this email.')
+    return res
+      .status(400)
+      .json({ message: 'User already Exists! Login Instead' })
   }
-  const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password)
-  if (!isPasswordCorrect) {
-    return alert('Incorrect password.')
-  }
-  return alert('Login successful.')
-}
 
-export const userLogin = async (req, res) => {
-  res.render(login)
+  const hashedPassword = bcrypt.hashSync(myPlaintextPassword, saltRounds)
+
+  const user = new User({
+    name,
+    email,
+    password: hashedPassword,
+  })
+  try {
+    await user.save()
+  } catch (err) {
+    console.log(err)
+  }
+  return res
+    .status(201)
+    .json({ user })
+}
+export const login = async (req, res) => {
   const { email, password } = req.body
   let existingUser
   try {
@@ -99,5 +70,4 @@ export const userLogin = async (req, res) => {
   }
   return res.status(200).json({ message: 'Login Successful' })
 }
-
 
