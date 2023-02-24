@@ -15,7 +15,7 @@ const employeeSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
   },
   birthday: {
     type: String,
