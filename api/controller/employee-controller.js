@@ -1,4 +1,7 @@
 import employee from '../model/employee.js'
+
+
+
 export const getAllEmployees = async (req, res) => {
   let employeesJSON
   try {

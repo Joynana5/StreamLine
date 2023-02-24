@@ -1,6 +1,7 @@
 import User from '../model/user.js'
 import bcrypt from 'bcrypt'
-
+import jwt from 'jsonwebtoken'
+const jwt_SECRET_KEY = "MyKey"
 const saltRounds = 10
 const myPlaintextPassword = 's0/P4$$w0rD'
 
@@ -20,12 +21,13 @@ export const getAllUser = async (req, res) => {
     .json({ users })
 }
 export const signup = async (req, res) => {
-  // password needed in the function below
-  const { name, email } = req.body
 
+  const { name, email, password } = req.body
+  const { id } = req.body
   let existingUser
   try {
-    existingUser = await User.findOne({ email })
+
+    existingUser = await User.findOne({ id })
   } catch (err) {
     return console.log(err)
   }
@@ -35,7 +37,7 @@ export const signup = async (req, res) => {
       .json({ message: 'User already Exists! Login Instead' })
   }
 
-  const hashedPassword = bcrypt.hashSync(myPlaintextPassword, saltRounds)
+  const hashedPassword = bcrypt.hashSync(password, saltRounds)
 
   const user = new User({
     name,
@@ -53,9 +55,11 @@ export const signup = async (req, res) => {
 }
 export const login = async (req, res) => {
   const { email, password } = req.body
+  // const { id } = req.params
   let existingUser
   try {
     existingUser = await User.findOne({ email })
+    console.log(existingUser);
   } catch (err) {
     return console.log(err)
   }
@@ -64,12 +68,16 @@ export const login = async (req, res) => {
       .status(404)
       .json({ message: 'Couldnt Find User By This Email' })
   }
-  const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password)
+
+  console.log(existingUser);
+
+  const isPasswordCorrect = await bcrypt.compare(password, existingUser.password)
+
   if (!isPasswordCorrect) {
     return res.status(400).json({ message: 'Incorrect Email / Password' })
   }
-  return res.status(200).json({ message: 'Login Successful' })
-}
 
-exports.signup = signup
-exports.login = login
+  
+  const token = jwt.sign({ id: existingUser._id }, jwt_SECRET_KEY, { expiresIn: '3hr' })
+  return res.status(200).json({ message: 'Login Successful', id: existingUser, token })
+}
