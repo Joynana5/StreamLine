@@ -20,12 +20,13 @@ async function seed() {
 
 await userseed()
 async function userseed() {
-  await user.create(user)
+  await user.deleteMany()
+  await user.create(userData)
+
   let test2 = await user.find({})
   console.log(test2)
 }
 
-await user.create(userData)
 
 
 await mongoose.disconnect()
