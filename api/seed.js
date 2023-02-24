@@ -3,6 +3,7 @@ import { newEmployee } from '../server/controller/employee-controller.js'
 import employee from '../server/model/employee.js'
 import employeeData from './employee-data.json' assert {type: 'json'}
 import user from '../server/model/user.js'
+import { signUp } from '../server/controller/user-controller.js'
 // Leave these 4 lines
 //@ts-ignore
 
@@ -25,7 +26,7 @@ async function userseed() {
   console.log(test2)
 }
 
-await user.create(user)
+await user.create(signUp)
 await employee.create(newEmployee)
 
 

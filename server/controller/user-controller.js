@@ -4,24 +4,32 @@ import bcrypt from 'bcrypt'
 const saltRounds = 10
 const myPlaintextPassword = 's0/P4$$w0rD'
 
-
 export const getAllUser = async (req, res) => {
-  let users
+  let usersJSON
   try {
-    users = await User.find()
+    usersJSON = await User.find()
+    return res.json(usersJSON)
   } catch (err) {
     console.log(err)
   }
-  if (!users) {
+  if (!usersJSON) {
     return res.status(404).json({ message: 'User not Found' })
   }
-  return res
-    .status(200)
-    .json({ users })
+  return res.status(200).json({ usersJSON })
 }
-export const signup = async (req, res) => {
-  // password needed in the function below
-  const { name, email } = req.body
+
+export const signUp = async () => {
+  const nameInput = document.getElementById('name')
+  const emailInput = document.getElementById('email')
+  const passwordInput = document.getElementById('password')
+ 
+  const name = nameInput.value
+  const email = emailInput.value
+  const password = passwordInput.value
+
+  if (!name || !email || !password) {
+    return alert('Invalid Request Body. Name, email and password are required.')
+  }
 
   let existingUser
   try {
@@ -29,13 +37,11 @@ export const signup = async (req, res) => {
   } catch (err) {
     return console.log(err)
   }
-  if (!existingUser) {
-    return res
-      .status(400)
-      .json({ message: 'User already Exists! Login Instead' })
+  if (existingUser) {
+    return alert('User already exists! Login instead.')
   }
 
-  const hashedPassword = bcrypt.hashSync(myPlaintextPassword, saltRounds)
+  let hashedPassword = bcrypt.hashSync(myPlaintextPassword, saltRounds)
 
   const user = new User({
     name,
@@ -44,14 +50,37 @@ export const signup = async (req, res) => {
   })
   try {
     await user.save()
+    return alert('Sign up successful.')
   } catch (err) {
     console.log(err)
   }
-  return res
-    .status(201)
-    .json({ user })
 }
-export const login = async (req, res) => {
+
+export const login = async () => {
+  const emailInput = document.getElementById('email')
+  const passwordInput = document.getElementById('password')
+
+  const email = emailInput.value
+  const password = passwordInput.value
+
+  let existingUser
+  try {
+    existingUser = await User.findOne({ email })
+  } catch (err) {
+    return console.log(err)
+  }
+  if (!existingUser) {
+    return alert('Couldn't find user by this email.')
+  }
+  const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password)
+  if (!isPasswordCorrect) {
+    return alert('Incorrect password.')
+  }
+  return alert('Login successful.')
+}
+
+export const userLogin = async (req, res) => {
+  res.render(login)
   const { email, password } = req.body
   let existingUser
   try {
@@ -70,4 +99,5 @@ export const login = async (req, res) => {
   }
   return res.status(200).json({ message: 'Login Successful' })
 }
+
 
