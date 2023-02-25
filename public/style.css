@@ -22,7 +22,8 @@ body {
   border-radius: 12px;
   padding: 20px 30px 120px;
   background-color: rgb(21, 70, 133);
-  box-shadow: 0 5px 10px, black;
+  box-shadow: 0 5px 10px black;
+  overflow: hidden;
 }
 
 .form.login {
@@ -35,10 +36,23 @@ body {
   border-radius: 50%;
   height: 100%;
   background: whitesmoke;
-
+  transition: all 0.6 ease;
 
 }
-.wrapper.active
+
+.wrapper.active .form header {
+  font-size: 30px;
+  text-align: center;
+  color: whitesmoke;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.wrapper.active .form.login {
+  bottom: -15%;
+  box-shadow: 0 -5px 10px, black;
+  border-radius: 35%;
+}
 
 .form header {
   font-size: 30px;
@@ -50,6 +64,14 @@ body {
 
 .form.login header {
   color: aliceblue;
+  opacity: 0.6;
+}
+
+.wrapper.active .form.login.input {
+  opacity: 1;
+}
+
+.wrapper.active .signup header {
   opacity: 0.6;
 }
 
@@ -71,7 +93,7 @@ form input {
   background-color: white;
 }
 
-.form.form.login.input {
+.form.login.input {
   border: 1px solid whitesmoke;
 }
 
