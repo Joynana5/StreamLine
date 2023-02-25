@@ -21,8 +21,22 @@ body {
   width: 100%;
   border-radius: 12px;
   padding: 20px 30px 120px;
-  background-color: lavender;
+  background-color: rgb(21, 70, 133);
   box-shadow: 0 5px 10px, black;
+}
+
+.form.login {
+  position: absolute;
+  left: 50%;
+  bottom: -86%;
+  transform: translateX(-50%);
+  width: calc(100% + 220px);
+  padding: 20px 140px;
+  border-radius: 50%;
+  height: 100%;
+  background: whitesmoke;
+
+
 }
 
 .form header {
@@ -30,6 +44,12 @@ body {
   text-align: center;
   color: white;
   font-weight: 600;
+  cursor: pointer;
+}
+
+.form.login header {
+  color: aliceblue;
+  opacity: 0.6;
 }
 
 .wrapper form {
@@ -50,6 +70,14 @@ form input {
   background-color: white;
 }
 
+.form.form.login.input {
+  border: 1px solid whitesmoke;
+}
+
+.form.login.input focus {
+  box-shadow: 0 1px 0 white
+}
+
 form .checkbox {
   display: flex;
   align-items: center;
@@ -68,10 +96,25 @@ form .checkbox label {
   color: aliceblue;
 }
 
+form a {
+  color: black;
+  text-decoration: none;
+}
+
+form a:hover {
+  text-decoration: underline;
+}
+
 form input[type="submit"] {
   margin-top: 15px;
   padding: none;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
+}
+
+.form.login input[type="submit"] {
+  background-color: rgb(21, 70, 133);
+  color: whitesmoke;
+  border: none;
 }
