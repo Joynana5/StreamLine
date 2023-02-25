@@ -1,7 +1,14 @@
 const wrapper = document.querySelector('wrapper')
-signupHeader = document.querySelector('.signup header')
-loginHeader = document.querySelector('.login header')
+const signupHeader = document.querySelector('.signup header')
+const loginHeader = document.querySelector('.login header')
 
+// @ts-ignore
 loginHeader.addEventListener('click', () => {
-  wrapper.classList.addEventListener('active')
+  // @ts-ignore
+  wrapper.classList.add('active')
+})
+// @ts-ignore
+loginHeader.addEventListener('click', () => {
+  // @ts-ignore
+  wrapper.classList.remove('active')
 })
