@@ -36,7 +36,25 @@
       </form>
     </div>
   </section>
-  <script src="views.js">
+  <script>
+
+    const wrapper = document.querySelector('.wrapper')
+    signupHeader = document.querySelector('.signup header')
+    loginHeader = document.querySelector('.login header')
+
+
+
+
+    loginHeader.addEventListener('click', (e) => {
+
+      wrapper.classList.add('active')
+    })
+
+
+    signupHeader.addEventListener('click', (e) => {
+
+      wrapper.classList.remove('active')
+    })
   </script>
 </body>
 
