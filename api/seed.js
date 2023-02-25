@@ -3,6 +3,7 @@ import employee from './model/employee.js'
 import employeeData from './employee-data.json' assert {type: 'json'}
 import user from './model/user.js'
 import userData from './user-data.json' assert {type: 'json'}
+import { hash, hashSync } from 'bcrypt'
 
 // Leave these 4 lines
 //@ts-ignore
@@ -21,7 +22,10 @@ async function seed() {
 await userseed()
 async function userseed() {
   await user.deleteMany()
-  await user.create(userData)
+  await user.create({
+    ...userData[0],
+    password: hashSync(userData[0].password, 10)
+  })
   let test2 = await user.find({})
   console.log(test2)
 }

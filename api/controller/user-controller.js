@@ -3,8 +3,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 const saltRounds = 10
 const myPlaintextPassword = 's0/P4$$w0rD'
-const JWT_SECRET_KEY = process.env.secret_key
-
+const SECRET = process.env.secret_key || ''
 
 export const signup = async (req, res) => {
 
@@ -68,19 +67,23 @@ export const login = async (req, res) => {
   const token = jwt.sign({ id: existingUser._id }, JWT_SECRET_KEY, { expiresIn: '3hr' })
   return res.status(200).json({ message: 'Login Successful', id: existingUser, token })
 }
-const verifyToken = (req, res, next) => {
+export const verifyToken = (req, res, next) => {
   const { id } = req.body
   const headers = req.headers[`Authorization`]
   const token = headers.split('')[1]
   if (!token) {
     res.status(404).json({ message: ' No token found' })
   }
-  jwt.verify(String(token), (err, user) => {
+  jwt.verify(String(token), SECRET, (err, user) => {
     if (err) {
       res.status(400).json({ message: 'Invalid Token' })
     }
     console.log({ id })
-    next()
+    if (user) {
+      //@ts-ignore
+      req.id = user.id
+      next()
+    }
   })
 }
 export const getUser = async (req, res, next) => {
