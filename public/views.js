@@ -1,14 +1,18 @@
-let signup = document.querySelector(".signup");
-let login = document.querySelector(".login");
-let slider = document.querySelector(".slider");
-let formSection = document.querySelector(".form-section");
 
-signup.addEventListener("click", () => {
-  slider.classList.add("moveslider");
-  formSection.classList.add("form-section-move");
-});
+const wrapper = document.querySelector('.wrapper')
+const signupHeader = document.querySelector('.signup header')
+const loginHeader = document.querySelector('.login header')
 
-login.addEventListener("click", () => {
-  slider.classList.remove("moveslider");
-  formSection.classList.remove("form-section-move");
-});
+
+
+// @ts-ignore
+loginHeader.addEventListener('click', (e) => {
+  // @ts-ignore
+  wrapper.classList.add('active')
+})
+
+// @ts-ignore
+signupHeader.addEventListener('click', (e) => {
+  // @ts-ignore
+  wrapper.classList.remove('active')
+})

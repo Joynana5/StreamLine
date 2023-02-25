@@ -131,8 +131,8 @@ header {
   width: 150px;
   border-radius: 50px;
   background-image: linear-gradient(to right,
-  rgb(219, 218, 237),
-  white);
+      rgb(219, 218, 237),
+      white);
   font-size: 22px;
   border: none;
   cursor: pointer;
