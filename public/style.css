@@ -22,22 +22,21 @@ body {
   border-radius: 12px;
   padding: 20px 30px 120px;
   background-color: rgb(21, 70, 133);
-  box-shadow: 0 5px 10px black;
+  box-shadow: 0 5px 10px gainsboro;
   overflow: hidden;
 }
 
 .form.login {
   position: absolute;
   left: 50%;
-  bottom: -86%;
+  bottom: -15%;
   transform: translateX(-50%);
   width: calc(100% + 220px);
   padding: 20px 140px;
   border-radius: 50%;
   height: 100%;
-  background: whitesmoke;
+  background: #fff;
   transition: all 0.6 ease;
-
 }
 
 .wrapper.active .form header {
@@ -50,24 +49,28 @@ body {
 
 .wrapper.active .form.login {
   bottom: -15%;
-  box-shadow: 0 -5px 10px, black;
+  box-shadow: 0 -5px 10px black;
   border-radius: 35%;
 }
 
 .form header {
   font-size: 30px;
   text-align: center;
-  color: white;
+  color: #fff;
   font-weight: 600;
   cursor: pointer;
 }
 
 .form.login header {
-  color: aliceblue;
+  color: #333;
   opacity: 0.6;
 }
 
-.wrapper.active .form.login.input {
+.wrapper.active .form.login header {
+  opacity: 1;
+}
+
+.wrapper.active .form.login input {
   opacity: 1;
 }
 
@@ -88,17 +91,18 @@ form input {
   border: none;
   padding: 0 15px;
   font-size: 16px;
+  font-weight: 400;
   color: black;
   border-radius: 8px;
   background-color: white;
 }
 
-.form.login.input {
-  border: 1px solid whitesmoke;
+.form.login input {
+  border: 1px solid #aaa;
 }
 
-.form.login.input focus {
-  box-shadow: 0 1px 0 white
+.form.login input:focus {
+  box-shadow: 0 1px 0 #ddd;
 }
 
 form .checkbox {
@@ -110,17 +114,17 @@ form .checkbox {
 .checkbox input[type="checkbox"] {
   height: 16px;
   width: 16px;
-  accent-color: white;
+  accent-color: #fff;
   cursor: pointer;
 }
 
 form .checkbox label {
   cursor: pointer;
-  color: aliceblue;
+  color: #fff;
 }
 
 form a {
-  color: black;
+  color: #333;
   text-decoration: none;
 }
 
@@ -137,7 +141,7 @@ form input[type="submit"] {
 }
 
 .form.login input[type="submit"] {
-  background-color: rgb(21, 70, 133);
-  color: whitesmoke;
+  background: rgb(21, 70, 133);
+  color: #fff;
   border: none;
 }
