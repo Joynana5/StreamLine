@@ -64,13 +64,21 @@ export const login = async (req, res) => {
 
 
   // @ts-ignore
-  const token = jwt.sign({ id: existingUser._id }, JWT_SECRET_KEY, { expiresIn: '3hr' })
+  const token = jwt.sign({ id: existingUser._id }, SECRET, { expiresIn: '30s' })
+  res.cookie(String(existingUser._id), token, {
+    path: '/',
+    expires: new Date(Date.now() + 1000 * 30),
+    httpOnly: true,
+    sameSite: 'lax',
+  })
   return res.status(200).json({ message: 'Login Successful', id: existingUser, token })
 }
 export const verifyToken = (req, res, next) => {
+  const cookies = req.headers.cookie;
+  const token = cookies.split('=')[1]
+  console.log(token)
   const { id } = req.body
   const headers = req.headers[`Authorization`]
-  const token = headers.split('')[1]
   if (!token) {
     res.status(404).json({ message: ' No token found' })
   }

@@ -4,11 +4,12 @@ import lifecycle from './middleware/lifecycle.js'
 import employeerouter from './router/employee-router.js'
 import userrouter from './router/user-routes.js'
 import morgan from 'morgan'
+import cookieParser from 'cookie-parser'
 mongoose.set('strictQuery', false)
 
 const app = express()
 app.use(express.json())
-
+app.use(cookieParser())
 app.use(morgan('dev'))
 
 app.use(lifecycle({
