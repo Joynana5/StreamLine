@@ -29,7 +29,7 @@ body {
 .form.login {
   position: absolute;
   left: 50%;
-  bottom: -86%;
+  bottom: -16%;
   transform: translateX(-50%);
   width: calc(100% + 220px);
   padding: 20px 140px;
@@ -132,7 +132,7 @@ form a:hover {
   text-decoration: underline;
 }
 
-button .submit {
+.button .submit {
   margin-top: 15px;
   padding: none;
   font-size: 18px;
@@ -140,7 +140,7 @@ button .submit {
   cursor: pointer;
 }
 
-button .login {
+.button .login {
   background: rgb(21, 70, 133);
   color: #fff;
   border: none;
