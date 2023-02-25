@@ -3,59 +3,51 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login and Signup </title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width,
+                         initial-scale=1.0">
+  <title>StreamLine Health</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <header>
+    <h1>StreamLine</h1>
+  </header>
 
-  <section class="wrapper">
-    <div class="form signup">
-      <header>Signup</header>
-      <form action="#">
-        <input type="text" placeholder="Full name" required />
-        <input type="text" placeholder="Email" required />
-        <input type="password" placeholder="Password" required />
-        <div class="checkbox">
-          <input type="checkbox" id="signupCheck" />
-          <label for="">I Accept all terms & conditions</label>
-        </div>
-        <button id="signup" type="submit">Signup</button>
-      </form>
+  <!-- container div -->
+  <div class="container">
+
+    <!-- upper button section to select
+             the login or signup form -->
+    <div class="slider"></div>
+    <div class="slider"></div>
+    <div class="btn">
+      <button class="login">Login</button>
+      <button class="signup">Signup</button>
     </div>
 
-    <div class="form login">
-      <header>Login</header>
-      <form action="#">
-        <input type="text" placeholder="Email Address" required />
-        <input type="password" placeholder="Password" required />
-        <a href="#">Forgot password?</a>
-        <button id="login" type="submit">Login</button>
-      </form>
+    <!-- Form section that contains the
+             login and the signup form -->
+    <div class="form-section">
+
+      <!-- login form -->
+      <div class="login-box">
+        <input type="email" class="email ele" placeholder="youremail@email.com">
+        <input type="password" class="password ele" placeholder="password">
+        <button class="clkbtn">Login</button>
+      </div>
+
+      <!-- signup form -->
+      <div class="signup-box">
+        <input type="text" class="name ele" placeholder="Enter your name">
+        <input type="email" class="email ele" placeholder="youremail@email.com">
+        <input type="password" class="password ele" class="password ele" placeholder="password">
+        <input type="password" class="password ele" placeholder="Confirm password">
+        <button class="clkbtn">Signup</button>
+      </div>
     </div>
-  </section>
-  <script>
-
-    const wrapper = document.querySelector('.wrapper')
-    signupHeader = document.querySelector('.signup header')
-    loginHeader = document.querySelector('.login header')
-
-
-
-
-    loginHeader.addEventListener('click', (e) => {
-
-      wrapper.classList.add('active')
-    })
-
-
-    signupHeader.addEventListener('click', (e) => {
-
-      wrapper.classList.remove('active')
-    })
-  </script>
+  </div>
+  <script src="views.js"></script>
 </body>
 
 </html>
