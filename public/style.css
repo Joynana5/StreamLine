@@ -132,7 +132,7 @@ form a:hover {
   text-decoration: underline;
 }
 
-form input[type="submit"] {
+button .submit {
   margin-top: 15px;
   padding: none;
   font-size: 18px;
@@ -140,7 +140,7 @@ form input[type="submit"] {
   cursor: pointer;
 }
 
-.form.login input[type="submit"] {
+button .login {
   background: rgb(21, 70, 133);
   color: #fff;
   border: none;

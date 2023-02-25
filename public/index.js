@@ -5,13 +5,13 @@ const loginHeader = document.querySelector('.login header')
 
 
 // @ts-ignore
-loginHeader.addEventListener('click', () => {
+loginHeader.addEventListener('click', (e) => {
   // @ts-ignore
   wrapper.classList.add('active')
 })
 
 // @ts-ignore
-signupHeader.addEventListener('click', () => {
+signupHeader.addEventListener('click', (e) => {
   // @ts-ignore
   wrapper.classList.remove('active')
 })
