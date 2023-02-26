@@ -12,6 +12,14 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(morgan('dev'))
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Orgin', '*')
+  res.header('Access-Control-Allow-Headers',
+    'Orgin,X-Requested-With, Content-Type, Accept'
+  )
+  next()
+})
+
 app.use(lifecycle({
   async setup() {
     // console.log('Before handler')
