@@ -91,7 +91,7 @@ const userSchema = new Schema({
 | :--------    | :-------  | :--------------     | :------------------                       |
 | `/`          | `Get`     | `Read`              | Lists all Users within the database       |
 | `/signup`    | `Post`    |  `Create`           | Adds new User to the database             |
-| `/login`     | `Post`    | `Read`              | User Authintication; allows administrator to have full CRUD capabilities |
+| `/login`     | `Post`    | `Read`              | User Authentication; allows administrator to have full CRUD capabilities |
 
 
 
