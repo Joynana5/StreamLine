@@ -21,21 +21,77 @@ API Reference
 ![image](https://user-images.githubusercontent.com/114016876/220657244-ff8c035a-a05d-41bd-9abc-6946e0eaee4a.png)
 
 
-#### Get all employees
+#### Data Models
 
-```http
-  GET /api/employees
+```
+const employeeSchema = new Schema({
+  first_name: {
+    type: String,
+    required: true
+  },
+  last_name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: false,
+  },
+  birthday: {
+    type: String,
+    required: true,
+    maxlength: 10
+  },
+  gender: {
+    type: String,
+    required: true,
+  },
+  status: {
+    type: Boolean,
+    required: true,
+  }
+})
+
+const userSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 6
+  }
+
+})
+
 ```
 
-#### Get employee
 
-```http
-  GET /api/items/${email}
-```
 
-| Parameter | Type     | Description                             |
-| :-------- | :------- | :--------------------------------       |
-| `email`   | `string` | **Required**. Email of emloyee to fetch |
+
+
+## Employee API
+| Route                   | Method    | Action              | Description                               |
+| :--------               | :-------  | :--------------     | :------------------                       |
+| `/`                     | `Get`     | `Read`              | Lists all employees within the database   |
+| `/newEmployee`          | `Post`    | `Create`            | Adds a new employee to the database       |
+| `/updateEmployee/:id`   | `Patch`   | `Update`            | Update existing employees information     |
+| `/deleteEmployee/:id`   | `Delete`  | `Delete`            | Deletes individual employee from database |
+
+
+## User API
+| Route        | Method    | Action              | Description                               |
+| :--------    | :-------  | :--------------     | :------------------                       |
+| `/`          | `Get`     | `Read`              | Lists all Users within the database       |
+| `/signup`    | `Post`    |  `Create`           | Adds new User to the database             |
+| `/login`     | `Post`    | `Read`              | User Authintication; allows administrator to have full CRUD capabilities |
 
 
 
@@ -70,15 +126,13 @@ Start the server
 ## Features
 
 - Employee Database
-- User Login
-- Search Filter
+- User Database
+- Full CRUD Capabilities
 
 ## Post MVP
-
+- front end application
 - User authentication
 - Leave tracker
-
-
 
 
 ## 
