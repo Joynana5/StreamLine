@@ -40,7 +40,7 @@ export const signup = async (req, res) => {
 }
 export const login = async (req, res) => {
   const { email, password } = req.body
-  // const { id } = req.params
+  const { id } = req.params
   let existingUser
   try {
     existingUser = await User.findOne({ email })
@@ -73,7 +73,7 @@ export const login = async (req, res) => {
   })
   return res.status(200).json({ message: 'Login Successful', id: existingUser, token })
 }
-export const verifyToken = (req, res, next) => {
+export const verifyToken = (req, res) => {
   const cookies = req.headers.cookie;
   const token = cookies.split('=')[1]
   console.log(token)
@@ -90,11 +90,11 @@ export const verifyToken = (req, res, next) => {
     if (user) {
       //@ts-ignore
       req.id = user.id
-      next()
+
     }
   })
 }
-export const getUser = async (req, res, next) => {
+export const getUser = async (req, res) => {
   const userId = req.id
   let user
   try {
